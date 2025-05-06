@@ -1,0 +1,7 @@
+public class MiClase {
+    void do() {
+        this -> método;
+        ::globalVar = 5;
+        int $invalido;
+    }
+}
