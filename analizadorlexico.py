@@ -8,7 +8,7 @@
 TOKENS = {
     "class": 1, "virtual": 2, "override": 3, "this": 4, "extends": 5, "abstract": 6,
     "public": 7, "private": 8, "protected": 9, "switch": 10, "case": 11, "break": 12,
-    "continue": 13, "do": 14, "void": 15
+    "continue": 13, "do": 14
 }
 
 # Diccionario de símbolos especiales con su número de token
