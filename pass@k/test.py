@@ -112,6 +112,10 @@ def run_java_test(test_code):
         return run_result.stdout
 
 def run_tests_from_jsonl(jsonl_path):
+    passed_tests = []
+    failed_tests = []
+    total_tests = 0
+
     with open(jsonl_path, "r") as f:
         for i, line in enumerate(f):
             entry = json.loads(line)
@@ -122,17 +126,41 @@ def run_tests_from_jsonl(jsonl_path):
             if language == "cpp":
                 result = run_cpp_test(test_code)
             elif language == "java":
-                java_class_name = get_public_class_name(test_code)  # Extrae 'FibonacciTest'
-                filename = f"{java_class_name}.java"
+                java_class_name = get_public_class_name(test_code)
                 result = run_java_test(test_code)
-            elif language == "csharp":
+            elif language == "c":
                 result = run_c_test(test_code)
             else:
                 result = "⚠️ Unsupported language or missing detection."
 
             print(result)
-            if i == 20:
-                break
+            total_tests += 1
+
+            # Clasificación del resultado
+            if "Test Case" in result and "Passed" in result:
+                passed_tests.append((i + 1, result))
+            elif "Test Case" in result and "Failed" in result:
+                failed_tests.append((i + 1, result))
+            elif result.strip().startswith("❌") or result.strip().startswith("⚠️"):
+                failed_tests.append((i + 1, result))
+            else:
+                passed_tests.append((i + 1, result))  # Consideramos sin errores como éxito
+
+    # Resumen final
+    print("\n=== TEST SUMMARY ===")
+    print(f"✅ Passed: {len(passed_tests)}")
+    print(f"❌ Failed: {len(failed_tests)}")
+    print(f"🔢 Total: {total_tests}")
+
+    if failed_tests:
+        print("\n❌ Failed Test Details:")
+        for test_num, output in failed_tests:
+            print(f"- Test {test_num}:")
+
+    if passed_tests:
+        print("\n✅ Passed Test Details:")
+        for test_num, output in passed_tests:
+            print(f"- Test {test_num}")
 
 # Llama a esta función con tu archivo JSONL
-run_tests_from_jsonl("/Users/estebanm/Documents/C3Agent/codealpaca_fix_subset.jsonl")
+run_tests_from_jsonl("/Users/estebanm/Documents/C3Agent/C3Agent/pass@k/codealpaca_fix_subset.jsonl")
