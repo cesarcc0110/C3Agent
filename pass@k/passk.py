@@ -7,7 +7,7 @@ from asyncio import Semaphore
 # ======================
 # CONFIGURACIÓN
 # ======================
-OLLAMA_ENDPOINT = "https://jemadrigal--ollama-server-ollamaserver-serve.modal.run/v1/completions"
+OLLAMA_ENDPOINT = "{apikey}/v1/completions"
 MODEL_NAME = "qwen2.5:7b"
 TEMPERATURE = 0.8
 MAX_TOKENS = 512

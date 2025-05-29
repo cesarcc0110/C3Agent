@@ -3,7 +3,7 @@ agent:
   type: default
   model:
     name: ollama/qwen2.5:7b
-    api_base: https://jemadrigal--ollama-server-ollamaserver-serve.modal.run
+    api_base: {endpoint}
     api_key: any-key
     per_instance_cost_limit: 0   
     total_cost_limit: 0
