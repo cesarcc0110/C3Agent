@@ -30,8 +30,8 @@ MODEL_DIR = "/ollama_models"
 
 # Define the models we want to work with
 # You can specify different model versions using the format "model:tag"
-MODELS_TO_DOWNLOAD = ["qwen2.5:7b"] # Downloaded at startup
-MODELS_TO_TEST = ["qwen2.5:7b"]  # Tested in our example
+MODELS_TO_DOWNLOAD = ["codegemma:7b"] # Downloaded at startup
+MODELS_TO_TEST = ["codegemma:7b"]  # Tested in our example
 
 # Ollama version to install - you may need to update this for the latest models
 OLLAMA_VERSION = "0.6.5"

@@ -2,8 +2,8 @@
 agent:
   type: default
   model:
-    name: ollama/qwen2.5:7b
-    api_base: {endpoint}
+    name: ollama/qwen2.5-coder:7b
+    api_base: https://a01641409--ollama-server-ollamaserver-serve.modal.run
     api_key: any-key
     per_instance_cost_limit: 0   
     total_cost_limit: 0
@@ -22,16 +22,44 @@ agent:
       {{problem_statement}}
       </pr_description>
 
-      Can you help me implement the necessary changes to the repository so that the requirements specified in the <pr_description> are met?
-      I've already taken care of all changes to any of the test files described in the <pr_description>. This means you DON'T have to modify the testing logic or any of the tests in any way!
-      Your task is to make the minimal changes to non-tests files in the {{working_dir}} directory to ensure the <pr_description> is satisfied.
-      Follow these steps to resolve the issue:
-      1. As a first step, it might be a good idea to find and read code relevant to the <pr_description>
-      2. Create a script to reproduce the error and execute it with `python <filename.py>` using the bash tool, to confirm the error
-      3. Edit the sourcecode of the repo to resolve the issue
-      4. Rerun your reproduce script and confirm that the error is fixed!
-      5. Think about edgecases and make sure your fix handles them as well
-      Your thinking should be thorough and so it's fine if it's very long.
+      Your job:
+      Implement changes to the code in the repository (excluding any test files) to ensure the requirements described above are fully met.
+
+      Do not edit test files. They have already been prepared to match the desired behavior.
+
+      Steps to follow:
+
+      1. *Understand the PR*
+        - Carefully read the PR description and restate what needs to be done in your own words.
+
+      2. *Locate the Relevant Code*
+        - Explore the codebase to find the parts that relate to the PR.
+
+      3. *Create a Reproduction Script (if applicable)*
+        - Write a simple script (e.g., repro.py) to reproduce the issue or demonstrate the current behavior.
+
+      4. *Execute and Analyze
+        - Run the script using python repro.py via the bash tool and describe the observed behavior.
+
+      5. *Implement the Fix*
+        - Modify only the source code files (not tests) to solve the problem described in the PR.
+        - Follow clean coding practices and avoid introducing regressions.
+        - Watch out for common bugs like incorrect ⁠ if __name__ == "__main__" ⁠ conditions, typos, or logic errors.
+        Try to give me only the code, without too many explanations
+
+      6. *Re-run the Script*
+        - Use the same reproduction script to confirm the fix works and the behavior is now correct.
+
+      7. *Handle Edge Cases*
+        - Consider boundary or special input cases. Make sure the fix handles them properly.
+
+      8. *Document Changes*
+        - Clearly explain what was changed, why, and how it solves the problem.
+
+      9. *Cleanup*
+        - If the ⁠ repro.py ⁠ script was created only for debugging, delete it once the fix is verified.
+
+      Be methodical and detailed in your reasoning. Explain your thought process at each step. The goal is clarity, correctness, and minimal impact.
     next_step_template: |-
       OBSERVATION:
       {{observation}}
