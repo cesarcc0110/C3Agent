@@ -1,0 +1,1 @@
+FROM https://huggingface.co/MadrigalJe/detonators_model_aranceles/resolve/main/unsloth.F16.gguf

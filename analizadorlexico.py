@@ -1,31 +1,28 @@
 """
-  Analizador Léxico Table-Driven para lenguajes de programación
+  Analizador Léxico Table-Driven simplificado
   Codificado por Cesar Cabrera, Jorge Madrigal y Heber Moran
-  Actualizado: Mayo 2025 con nuevo DFA para identificadores
+  Actualizado: Mayo 2025
 """
 
 # Diccionario de palabras clave con su número de token
 TOKENS = {
-    "class": 1, "virtual": 2, "override": 3, "extends": 4, 
-    "public": 5, "private": 6, "protected": 7, "identifier": 8
+    "class": 1,
+    "identifier": 2
 }
 
 # Diccionario de símbolos especiales con su número de token
 SPECIAL_SYMBOLS = {
-    "{": 9, "}": 10, "(": 11, ")": 12,
+    "{": 3, "}": 4, "(": 5, ")": 6
 }
 
 # ====================== TABLA DE TRANSICIONES DEL DFA ======================
 
 # Tipos de caracteres:
-# 0 = letra, 1 = dígito, 2 = '_', 3 = delimitador, 4 = símbolo especial, 5 = otro
-
-# Tipos de caracteres:
-# 0 = letra, 1 = dígito, 2 = '_', 3 = delimitador (espacio, tab, \n), 4 = otro
+# 0 = letra, 1 = dígito, 2 = '_', 3 = delimitador, 4 = otro
 T = [
-    [ 1,  None,  1,  None,  None ],  # q0
-    [  1,   1,   1,   2,   None  ],  # q1
-    [None, None, None, None, None]   # q2 (estado de aceptación)
+    [1, None, 1, None, None],    # q0
+    [1, 1, 1, 2, None],          # q1
+    [None, None, None, None, None]  # q2 (estado de aceptación)
 ]
 
 # Estados de aceptación
@@ -79,30 +76,25 @@ def lexical_scanner(input_string):
             ch_type = classify(ch)
             next_state = T[state][ch_type]
 
-            # Si el siguiente estado es válido, avanzamos
             if next_state is not None and ch_type in [0, 1, 2]:
                 lexeme += ch
                 i += 1
                 state = next_state
-
-            # Si encontramos un delimitador y hay transición a estado final, forzamos aceptación
-            elif ch_type == 3 and T[state][ch_type] is not None:
-                state = T[state][ch_type]  # ir a q2
-                i += 1  # consumir el delimitador
+            elif (ch_type == 3 or ch in SPECIAL_SYMBOLS) and T[state][3] is not None:
+                # símbolo o delimitador fuerza aceptación
+                state = T[state][3]
                 break
-
             else:
                 break
 
-
         if is_accepting(state) and lexeme != "":
-            if lexeme in TOKENS:
-                tokens.append((TOKENS[lexeme],))
+            if lexeme == "class":
+                tokens.append((TOKENS["class"],))
             else:
                 if lexeme not in symbol_table:
                     symbol_table.append(lexeme)
                 idx = symbol_table.index(lexeme) + 1
-                tokens.append((8, idx))  # 13 = identificador
+                tokens.append((TOKENS["identifier"], idx))  # 2 = identificador
         else:
             i += 1
 
@@ -120,18 +112,17 @@ if __name__ == "__main__":
     # Ejecutar el analizador
     tokens, symbols = lexical_scanner(source_code)
 
-    # Mostrar tokens reconocidos
-    print("\nTokens Reconocidos:")
-    for token in tokens:
-        if len(token) == 2:
-            print(f"<{token[0]},{token[1]}>  {symbols[token[1]-1]}")
-        else:
-            lex = next((k for k, v in TOKENS.items() if v == token[0]), None)
-            if lex is None:
-                lex = next((k for k, v in SPECIAL_SYMBOLS.items() if v == token[0]), None)
-            print(f"<{token[0]}> {lex if lex else ''}")
+    # Escribir la salida en un archivo
+    with open("tokens.txt", "w", encoding="utf-8") as out_file:
+        out_file.write("Tokens Reconocidos:\n")
+        for token in tokens:
+            if len(token) == 2:
+                out_file.write(f"<{token[0]},{token[1]}>\n")
+            else:
+                out_file.write(f"<{token[0]}>\n")
 
-    # Mostrar tabla de símbolos
-    print("\nTabla de Símbolos (Identifiers):")
-    for idx, sym in enumerate(symbols):
-        print(f"{idx + 1}: {sym}")
+        out_file.write("\nTabla de Símbolos (Identifiers):\n")
+        for idx, sym in enumerate(symbols):
+            out_file.write(f"{idx + 1}: {sym}\n")
+
+    print("Análisis léxico completado. Revisa el archivo 'tokens.txt'.")
