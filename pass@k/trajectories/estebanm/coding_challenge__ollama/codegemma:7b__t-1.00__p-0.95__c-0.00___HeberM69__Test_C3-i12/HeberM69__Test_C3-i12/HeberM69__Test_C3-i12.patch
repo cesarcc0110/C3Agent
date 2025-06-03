@@ -1,8 +1,8 @@
 diff --git a/BinarySearch.java b/BinarySearch.java
-index 0b61cd7..f78c0d8 100644
+index af9731b..8274591 100644
 --- a/BinarySearch.java
 +++ b/BinarySearch.java
-@@ -2,7 +2,7 @@ public class Solution {
+@@ -2,7 +2,7 @@ public class BinarySearch {
      public int binarySearch(int[] nums, int target) {
          int left = 0, right = nums.length - 1;
          while (left <= right) {

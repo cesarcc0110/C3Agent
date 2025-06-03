@@ -171,7 +171,7 @@
   :\"cache_control\",\"last_n_messages\":2,\"last_n_messages_offset\":0,\"tagged_roles\"\
   :[\"user\",\"tool\"]}],\"model\":{\"name\":\"ollama/codegemma:7b\",\"per_instance_cost_limit\"\
   :0.0,\"total_cost_limit\":0.0,\"per_instance_call_limit\":0,\"temperature\":1.0,\"\
-  top_p\":0.95,\"api_base\":\"https://frieda-guerrero19--ollama-server-ollamaserver-serve.modal.run\"\
+  top_p\":0.95,\"api_base\":\"https://cesariux62--ollama-server-ollamaserver-serve.modal.run\"\
   ,\"api_version\":null,\"api_key\":\"**********\",\"stop\":[],\"completion_kwargs\"\
   :{},\"convert_system_to_user\":false,\"retry\":{\"retries\":20,\"min_wait\":10.0,\"\
   max_wait\":120.0},\"delay\":0.0,\"fallbacks\":[],\"choose_api_key_by_thread\":true,\"\
