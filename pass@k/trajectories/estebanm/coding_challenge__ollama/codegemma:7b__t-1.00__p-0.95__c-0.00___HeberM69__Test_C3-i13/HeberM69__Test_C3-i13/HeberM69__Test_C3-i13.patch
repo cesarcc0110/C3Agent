@@ -1,0 +1,11 @@
+diff --git a/ValidParentheses.cpp b/ValidParentheses.cpp
+index 8436019..1af73a4 100644
+--- a/ValidParentheses.cpp
++++ b/ValidParentheses.cpp
+@@ -16,5 +16,5 @@ bool isValid(string s) {
+                 (c == ']' && top != '[')) return false;
+         }
+     }
+-    return stk.size() == 1; // Bug: debe ser 0
++    return stk.size() == 0; // Bug: debe ser 0
+ }

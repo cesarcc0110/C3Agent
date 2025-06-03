@@ -1,0 +1,13 @@
+diff --git a/ReverseLinkedList.cpp b/ReverseLinkedList.cpp
+index 78b735e..9b588f1 100644
+--- a/ReverseLinkedList.cpp
++++ b/ReverseLinkedList.cpp
+@@ -7,7 +7,7 @@ struct ListNode {
+ ListNode* reverseList(ListNode* head) {
+     ListNode* prev = nullptr;
+     ListNode* curr = head;
+-    while (curr != nullptr) {
++    curr = next_node; while (curr != nullptr) {
+         ListNode* next_node = curr->next;
+         curr->next = prev;
+         prev = curr;

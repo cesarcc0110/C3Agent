@@ -30,6 +30,8 @@ MODEL_DIR = "/ollama_models"
 
 # Define the models we want to work with
 # You can specify different model versions using the format "model:tag"
+MODELS_TO_DOWNLOAD = ["hf.co/MadrigalJe/detonators_model_aranceles:F16"] # Downloaded at startup
+
 MODELS_TO_DOWNLOAD = ["codegemma:7b"] # Downloaded at startup
 MODELS_TO_TEST = ["codegemma:7b"]  # Tested in our example
 
@@ -87,7 +89,7 @@ model_volume = modal.Volume.from_name("ollama-models-store", create_if_missing=T
 
 
 @app.cls(
-    gpu="L40S",  # Use H100 GPUs for best performance // T4
+    gpu="H100",  # Use H100 GPUs for best performance // T4 // L40S
     volumes={MODEL_DIR: model_volume},  # Mount our model storage
     timeout=60 * 5,  # 5 minutes max input runtime
     min_containers=1,  # Keep at least one container running for fast startup

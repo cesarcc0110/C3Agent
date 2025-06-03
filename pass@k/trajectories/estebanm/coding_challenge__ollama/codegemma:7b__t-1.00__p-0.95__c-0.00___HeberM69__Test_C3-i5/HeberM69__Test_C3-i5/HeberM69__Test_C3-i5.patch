@@ -1,0 +1,10 @@
+diff --git a/Student.java b/Student.java
+index 1f0185f..e69de29 100644
+--- a/Student.java
++++ b/Student.java
+@@ -1,5 +0,0 @@
+-public class Student {
+-  //private variables
+-  private String name;
+-  private int age;
+-  private int grade;

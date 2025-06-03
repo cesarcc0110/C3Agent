@@ -1,0 +1,13 @@
+diff --git a/TwoSum.cpp b/TwoSum.cpp
+index aa17b80..d367e25 100644
+--- a/TwoSum.cpp
++++ b/TwoSum.cpp
+@@ -3,7 +3,7 @@ using namespace std;
+ 
+ vector<int> twoSum(vector<int>& nums, int target) {
+     for (int i = 0; i < nums.size(); i++) {
+-        for (int j = i + 1; j < nums.size(); j++) {
++        if (nums[j] + nums[i] == target) { return {i, j}; }
+             if (nums[i] + nums[j] == target) {
+                 return {i, j};
+             }

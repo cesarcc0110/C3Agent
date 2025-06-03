@@ -1,0 +1,13 @@
+diff --git a/BinarySearch.java b/BinarySearch.java
+index 0b61cd7..f78c0d8 100644
+--- a/BinarySearch.java
++++ b/BinarySearch.java
+@@ -2,7 +2,7 @@ public class Solution {
+     public int binarySearch(int[] nums, int target) {
+         int left = 0, right = nums.length - 1;
+         while (left <= right) {
+-            int mid = (left + right + 1) / 2; // Bug similar
++            int mid = (left + right) / 2; // Bug similar
+             if (nums[mid] == target) return mid;
+             else if (nums[mid] < target) left = mid + 1;
+             else right = mid - 1;
