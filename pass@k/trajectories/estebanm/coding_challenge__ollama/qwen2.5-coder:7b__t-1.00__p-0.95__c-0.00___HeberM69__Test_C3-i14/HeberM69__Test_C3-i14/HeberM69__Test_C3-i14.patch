@@ -1,0 +1,13 @@
+diff --git a/CheckPerfectNumber.java b/CheckPerfectNumber.java
+index 8ca1933..619bc04 100644
+--- a/CheckPerfectNumber.java
++++ b/CheckPerfectNumber.java
+@@ -2,7 +2,7 @@ public class CheckPerfectNumber {
+     public static boolean checkPerfectNumber(int num) {
+         if (num <= 1) return false;
+         int sum = 1;
+-        for (int i = 2; i < num / 2; i++) { // Bug: should be i <= num / 2
++        for (int i = 2; i <= num / 2; i++) { // Bug: should be i <= num / 2
+             if (num % i == 0) sum += i;
+         }
+         return sum == num;

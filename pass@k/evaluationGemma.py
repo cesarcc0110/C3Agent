@@ -77,7 +77,7 @@ def fix_common_patch_path_errors(path: str) -> str:
         r'codinghallenge': 'coding_challenge',
         r'coding_chlenge': 'coding_challenge',
         r'codinghallenge': 'coding_challenge',
-        r'codegmeama': 'codegemma',
+        r'qn2.5': 'qwen2.5',
         r'codegemna': 'codegemma',
         r'codegmemma': 'codegemma',
         r'cegemma': 'codegemma',

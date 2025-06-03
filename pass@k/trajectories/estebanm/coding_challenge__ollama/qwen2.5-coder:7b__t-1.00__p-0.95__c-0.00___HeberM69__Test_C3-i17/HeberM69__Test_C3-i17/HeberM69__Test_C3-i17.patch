@@ -1,0 +1,26 @@
+diff --git a/GuessNumber.java b/GuessNumber.java
+index aeb98ad..5e41098 100644
+--- a/GuessNumber.java
++++ b/GuessNumber.java
+@@ -14,7 +14,7 @@ public class GuessNumber {
+             else if (g > 0) left = mid + 1;
+             else right = mid - 1;
+         }
+-        return left + 1; // Bug: wrong return when g == 0 is never hit
++        return g == 0 ? mid : (g > 0 ? left + 1 : right - 1); // Bug: wrong return when g == 0 is never hit
+     }
+ 
+     public static void main(String[] args) {
+diff --git a/MaxProfit.java b/MaxProfit.java
+index c3af390..b2a3db9 100644
+--- a/MaxProfit.java
++++ b/MaxProfit.java
+@@ -6,7 +6,7 @@ public class MaxProfit {
+             maxProfit = Math.max(maxProfit, prices[i] - minPrice);
+             if (prices[i] < minPrice) minPrice = prices[i];
+         }
+-        return maxProfit + 1; // Bug: should not add 1
++        return maxProfit;
+     }
+ 
+     public static void main(String[] args) {

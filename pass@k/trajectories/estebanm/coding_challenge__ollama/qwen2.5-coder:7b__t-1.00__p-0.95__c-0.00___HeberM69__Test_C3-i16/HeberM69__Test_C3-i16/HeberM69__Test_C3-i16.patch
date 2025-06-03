@@ -1,0 +1,12 @@
+diff --git a/FindPeakElement.java b/FindPeakElement.java
+index 7eb880e..08c7ee1 100644
+--- a/FindPeakElement.java
++++ b/FindPeakElement.java
+@@ -1,6 +1,6 @@
+ public class FindPeakElement {
+     public static int findPeakElement(int[] nums) {
+-        for (int i = 1; i < nums.length - 1; i++) {
++        if (nums[0] > nums[nums.length - 1]) return 0;\n        if (nums[nums.length - 1] > nums[nums.length - 2]) return nums.length - 1;\n        for (int i = 1; i < nums.length - 1; i++) {
+             if (nums[i] > nums[i - 1] && nums[i] > nums[i + 1])
+                 return i;
+         }

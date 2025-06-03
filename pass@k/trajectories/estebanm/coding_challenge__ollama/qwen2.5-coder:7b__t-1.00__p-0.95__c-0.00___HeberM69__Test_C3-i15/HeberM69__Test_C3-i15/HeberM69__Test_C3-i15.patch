@@ -1,0 +1,18 @@
+diff --git a/CountPrimes.java b/CountPrimes.java
+index cbaa890..6650111 100644
+--- a/CountPrimes.java
++++ b/CountPrimes.java
+@@ -11,11 +11,11 @@ public class CountPrimes {
+         int count = 0;
+         for (boolean b : isPrime)
+             if (b) count++;
+-        return count - 1; // Bug: unnecessary subtraction
++        return count; // Bug: unnecessary subtraction
+     }
+ 
+     public static void main(String[] args) {
+-        int n = 10;
++        int n = 25;
+         System.out.println("Primes less than " + n + ": " + countPrimes(n));
+     }
+ }
